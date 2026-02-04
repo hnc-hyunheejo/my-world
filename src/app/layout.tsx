@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
+import { Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { FlowBackground } from "@/components/shared/FlowBackground";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Langflow 학습 가이드 - AI 애플리케이션 개발 시작하기",
@@ -21,10 +35,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className="font-sans antialiased min-h-screen flex flex-col">
+    <html lang="ko" className={`${spaceGrotesk.variable} ${plusJakartaSans.variable}`}>
+      <body className="font-sans antialiased min-h-screen flex flex-col bg-[#050510]">
+        <FlowBackground />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 relative">{children}</main>
         <Footer />
       </body>
     </html>
